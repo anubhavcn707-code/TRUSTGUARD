@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRUSTGUARD | AI-Powered Web Threat Detection & Digital Trust Intelligence</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="m9 12 2 2 4-4"/>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">TRUSTGUARD</span>
+                    <span class="brand-tagline">DIGITAL TRUST INTELLIGENCE</span>
+                </div>
+            </div>
+
+            <nav class="nav-links">
+                <button class="nav-tab active" data-tab="tab-url">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                    <span>Website Scanner</span>
+                </button>
+                <button class="nav-tab" data-tab="tab-message">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span>Message Scam Detector</span>
+                </button>
+                <button class="nav-tab" data-tab="tab-file">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                    </svg>
+                    <span>File & Hash Checker</span>
+                </button>
+                <button class="nav-tab" data-tab="tab-ssl">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                    <span>SSL Inspector</span>
+                </button>
+                <button class="nav-tab" data-tab="tab-history">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <span>Scan History</span>
+                </button>
+                <button class="nav-tab" data-tab="tab-guide">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    <span>Safety Guide</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO BANNER -->
+    <section class="hero-section">
+        <div class="container hero-content">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                <span>Active Threat Detection Engine</span>
+            </div>
+            <h1 class="hero-title">Protect Yourself From Online Threats</h1>
+            <p class="hero-subtitle">Simple, instant security checks for websites, phishing messages, and suspicious files.</p>
+            
+            <!-- Quick Summary Stats Chips -->
+            <div class="quick-stats-row" id="quickStatsRow">
+                <div class="stat-chip">
+                    <span class="stat-number" id="statTotal">{{ stats.total }}</span>
+                    <span class="stat-label">Total Scans</span>
+                </div>
+                <div class="stat-chip safe">
+                    <span class="stat-dot safe"></span>
+                    <span class="stat-number" id="statSafe">{{ stats.safe }}</span>
+                    <span class="stat-label">Safe Verified</span>
+                </div>
+                <div class="stat-chip suspicious">
+                    <span class="stat-dot suspicious"></span>
+                    <span class="stat-number" id="statSuspicious">{{ stats.suspicious }}</span>
+                    <span class="stat-label">Suspicious</span>
+                </div>
+                <div class="stat-chip dangerous">
+                    <span class="stat-dot dangerous"></span>
+                    <span class="stat-number" id="statDangerous">{{ stats.dangerous }}</span>
+                    <span class="stat-label">Threats Blocked</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN INTERACTIVE CONTENT AREA -->
+    <main class="main-content container">
+
+        <!-- ============================================== -->
+        <!-- TAB 1: WEBSITE SCANNER                          -->
+        <!-- ============================================== -->
+        <section class="tab-panel active" id="tab-url">
+            <div class="tool-card">
+                <div class="card-header">
+                    <div class="header-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="card-title">Website & URL Safety Scanner</h2>
+                        <p class="card-description">Inspect web links for phishing, fake domain spoofing, invalid SSL certificates, and raw IP tricks.</p>
+                    </div>
+                </div>
+
+                <form id="urlScanForm" class="scan-form">
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </div>
+                        <input type="text" id="urlInput" class="form-input" placeholder="e.g. https://www.paypal.com or suspicious link to test" required autocomplete="off">
+                        <button type="submit" class="btn btn-primary" id="btnScanUrl">
+                            <span class="btn-text">Scan Website</span>
+                            <span class="btn-loader"></span>
+                        </button>
+                    </div>
+
+                    <!-- 1-Click Test Samples for Quick College Demo -->
+                    <div class="preset-chips">
+                        <span class="preset-label">Try quick samples:</span>
+                        <button type="button" class="chip-sample" data-fill-url="https://www.google.com">
+                            <span class="badge-dot safe"></span> google.com (Safe)
+                        </button>
+                        <button type="button" class="chip-sample" data-fill-url="http://paypal-verification-account-security-update.xyz/login">
+                            <span class="badge-dot dangerous"></span> paypal-verify.xyz (Phishing)
+                        </button>
+                        <button type="button" class="chip-sample" data-fill-url="http://192.168.1.1/admin-login">
+                            <span class="badge-dot suspicious"></span> 192.168.1.1 (Raw IP)
+                        </button>
+                    </div>
+                </form>
+
+                <!-- URL Scan Result Container -->
+                <div id="urlResultBox" class="result-box hidden"></div>
+            </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- TAB 2: MESSAGE SCAM DETECTOR                   -->
+        <!-- ============================================== -->
+        <section class="tab-panel" id="tab-message">
+            <div class="tool-card">
+                <div class="card-header">
+                    <div class="header-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="card-title">Phishing & Scam Message Detector</h2>
+                        <p class="card-description">Paste any suspicious email, SMS, or chat text to identify urgency tricks, fake rewards, and credential traps.</p>
+                    </div>
+                </div>
+
+                <form id="messageScanForm" class="scan-form">
+                    <div class="textarea-wrapper">
+                        <textarea id="messageInput" class="form-textarea" rows="4" placeholder="Paste the message content here... e.g. 'URGENT: Your bank account will be suspended in 24 hours. Click here to verify...'" required></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <!-- Preset Samples -->
+                        <div class="preset-chips">
+                            <span class="preset-label">Try test messages:</span>
+                            <button type="button" class="chip-sample" data-fill-msg="URGENT: Your Netflix account has been suspended due to billing issues. Update your payment details within 24 hours at http://netflix-billing-update.xyz to prevent permanent cancellation.">
+                                <span class="badge-dot dangerous"></span> Fake Netflix Urgent Notice
+                            </button>
+                            <button type="button" class="chip-sample" data-fill-msg="Congratulations! You have been selected as the lucky winner of our $5,000 cash giveaway. Click http://bit.ly/claim-prize-now and enter your OTP to claim your funds today!">
+                                <span class="badge-dot dangerous"></span> Lottery Prize Scam
+                            </button>
+                            <button type="button" class="chip-sample" data-fill-msg="Hi team, please find the presentation slides for tomorrow's project meeting in the shared department folder. Let me know if you have questions.">
+                                <span class="badge-dot safe"></span> Normal Team Message
+                            </button>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="btnScanMessage">
+                            <span class="btn-text">Analyze Message</span>
+                            <span class="btn-loader"></span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Message Result Container -->
+                <div id="messageResultBox" class="result-box hidden"></div>
+            </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- TAB 3: FILE & HASH INTEGRITY CHECKER            -->
+        <!-- ============================================== -->
+        <section class="tab-panel" id="tab-file">
+            <div class="tool-card">
+                <div class="card-header">
+                    <div class="header-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="card-title">File Hash & Malware Integrity Checker</h2>
+                        <p class="card-description">Verify file fingerprints with MD5, SHA-1, and SHA-256 to detect known malware signatures and deceptive file types.</p>
+                    </div>
+                </div>
+
+                <div class="file-checker-grid">
+                    <!-- Option A: File Upload -->
+                    <div class="checker-subcard">
+                        <h3 class="subcard-title">Option 1: Upload a File</h3>
+                        <p class="subcard-desc">Select any document, script, or installer to inspect its cryptographic fingerprint.</p>
+                        
+                        <form id="fileUploadForm" class="upload-area" enctype="multipart/form-data">
+                            <input type="file" id="fileInput" class="file-input-hidden">
+                            <label for="fileInput" class="upload-dropzone">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="17 8 12 3 7 8"/>
+                                    <line x1="12" y1="3" x2="12" y2="15"/>
+                                </svg>
+                                <span class="dropzone-text" id="dropzoneText">Click to browse or drop file here</span>
+                                <span class="dropzone-sub">Max file size: 16 MB</span>
+                            </label>
+                            <button type="submit" class="btn btn-primary btn-block" id="btnUploadFile" disabled>
+                                <span class="btn-text">Check Selected File</span>
+                                <span class="btn-loader"></span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Option B: Paste Hash String -->
+                    <div class="checker-subcard">
+                        <h3 class="subcard-title">Option 2: Paste Hash Fingerprint</h3>
+                        <p class="subcard-desc">Check a standard 32, 40, or 64 character MD5 / SHA-1 / SHA-256 hash.</p>
+                        
+                        <form id="hashScanForm" class="hash-form">
+                            <div class="input-group">
+                                <input type="text" id="hashInput" class="form-input" placeholder="Paste MD5 or SHA-256 hash..." required>
+                                <button type="submit" class="btn btn-primary" id="btnScanHash">
+                                    <span class="btn-text">Verify Hash</span>
+                                    <span class="btn-loader"></span>
+                                </button>
+                            </div>
+
+                            <div class="preset-chips">
+                                <span class="preset-label">Test threat hashes:</span>
+                                <button type="button" class="chip-sample" data-fill-hash="44d88612fea8a8f36de82e1278abb02f">
+                                    <span class="badge-dot dangerous"></span> EICAR Antivirus Test (MD5)
+                                </button>
+                                <button type="button" class="chip-sample" data-fill-hash="ed01ebfbc9eb5bbea545af4d01bf5f1071661840480439c6e5babe8e080e41aa">
+                                    <span class="badge-dot dangerous"></span> WannaCry Test (SHA256)
+                                </button>
+                                <button type="button" class="chip-sample" data-fill-hash="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855">
+                                    <span class="badge-dot safe"></span> Empty File Hash (Safe)
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- File/Hash Result Container -->
+                <div id="fileResultBox" class="result-box hidden"></div>
+            </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- TAB 4: SSL CERTIFICATE INSPECTOR               -->
+        <!-- ============================================== -->
+        <section class="tab-panel" id="tab-ssl">
+            <div class="tool-card">
+                <div class="card-header">
+                    <div class="header-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="card-title">Direct SSL / TLS Certificate Inspector</h2>
+                        <p class="card-description">Perform a live cryptographic handshake using Python's SSL and socket libraries to verify encryption health and expiry.</p>
+                    </div>
+                </div>
+
+                <form id="sslScanForm" class="scan-form">
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            </svg>
+                        </div>
+                        <input type="text" id="sslInput" class="form-input" placeholder="e.g. wikipedia.org or github.com" required autocomplete="off">
+                        <button type="submit" class="btn btn-primary" id="btnScanSsl">
+                            <span class="btn-text">Inspect SSL</span>
+                            <span class="btn-loader"></span>
+                        </button>
+                    </div>
+
+                    <div class="preset-chips">
+                        <span class="preset-label">Test domains:</span>
+                        <button type="button" class="chip-sample" data-fill-ssl="wikipedia.org">
+                            <span class="badge-dot safe"></span> wikipedia.org
+                        </button>
+                        <button type="button" class="chip-sample" data-fill-ssl="github.com">
+                            <span class="badge-dot safe"></span> github.com
+                        </button>
+                        <button type="button" class="chip-sample" data-fill-ssl="google.com">
+                            <span class="badge-dot safe"></span> google.com
+                        </button>
+                    </div>
+                </form>
+
+                <!-- SSL Result Container -->
+                <div id="sslResultBox" class="result-box hidden"></div>
+            </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- TAB 5: SCAN HISTORY & AUDIT LOG                 -->
+        <!-- ============================================== -->
+        <section class="tab-panel" id="tab-history">
+            <div class="tool-card">
+                <div class="history-header">
+                    <div>
+                        <h2 class="card-title">Security Threat Audit History</h2>
+                        <p class="card-description">Persisted scan logs stored securely in local SQLite database.</p>
+                    </div>
+                    <div class="history-actions">
+                        <button class="btn btn-secondary btn-sm" id="btnRefreshHistory">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 4v6h-6"/>
+                                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+                            </svg>
+                            <span>Refresh</span>
+                        </button>
+                        <button class="btn btn-secondary btn-sm danger" id="btnClearHistory">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"/>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                            </svg>
+                            <span>Clear History</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="history-filters">
+                    <div class="filter-group">
+                        <label for="filterType">Scan Type:</label>
+                        <select id="filterType" class="form-select">
+                            <option value="all">All Types</option>
+                            <option value="url">Websites / URLs</option>
+                            <option value="message">Messages</option>
+                            <option value="file">Files & Hashes</option>
+                            <option value="ssl">SSL Certificates</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="filterStatus">Status:</label>
+                        <select id="filterStatus" class="form-select">
+                            <option value="all">All Statuses</option>
+                            <option value="safe">Safe Only</option>
+                            <option value="suspicious">Suspicious Only</option>
+                            <option value="dangerous">Dangerous Only</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group search-filter">
+                        <input type="text" id="filterSearch" class="form-input form-input-sm" placeholder="Search target or keyword...">
+                    </div>
+                </div>
+
+                <!-- History Table -->
+                <div class="table-responsive">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Type</th>
+                                <th>Target / Input</th>
+                                <th>Trust Score</th>
+                                <th>Status</th>
+                                <th>Summary</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody">
+                            <tr>
+                                <td colspan="6" class="text-center py-4">Loading audit logs...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- TAB 6: SECURITY EDUCATION & SAFETY GUIDE        -->
+        <!-- ============================================== -->
+        <section class="tab-panel" id="tab-guide">
+            <div class="guide-grid">
+                
+                <div class="guide-card">
+                    <div class="guide-icon safe">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </div>
+                    <h3 class="guide-title">How to Spot a Phishing Link</h3>
+                    <ul class="guide-list">
+                        <li><strong>Look at the actual domain:</strong> Check the part right before the first slash (e.g., <code>paypal.com.fake.xyz</code> is <strong>fake.xyz</strong>, NOT paypal).</li>
+                        <li><strong>Beware of raw IP addresses:</strong> Legitimate banking or shopping services almost never ask you to open a raw numerical IP address like <code>http://185.22.x.x</code>.</li>
+                        <li><strong>Excessive hyphens:</strong> Look out for domains like <code>apple-support-login-verify.com</code> designed to confuse you.</li>
+                    </ul>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-icon warning">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                            <line x1="12" y1="9" x2="12" y2="13"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                    </div>
+                    <h3 class="guide-title">5 Red Flags in Scam Messages</h3>
+                    <ul class="guide-list">
+                        <li><strong>Artificial Urgency:</strong> Demands like "Act within 24 hours or your account will be deleted" try to stop you from thinking clearly.</li>
+                        <li><strong>Requests for OTPs or Passwords:</strong> Legitimate companies will <strong>never</strong> ask you to text or email your one-time passcode.</li>
+                        <li><strong>Unsolicited Prize / Lottery:</strong> You cannot win a lottery you never entered.</li>
+                        <li><strong>Threats of Police or Arrest:</strong> Law enforcement never contacts citizens via SMS to demand payments.</li>
+                    </ul>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-icon info">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                    </div>
+                    <h3 class="guide-title">Why SSL & Encryption Matter</h3>
+                    <ul class="guide-list">
+                        <li><strong>Prevents Eavesdropping:</strong> HTTPS encrypts communications so hackers on public Wi-Fi cannot see passwords or card numbers.</li>
+                        <li><strong>Identity Verification:</strong> Legitimate SSL certificates are verified by trusted Certificate Authorities (CAs).</li>
+                        <li><strong>However:</strong> Having a padlock does NOT mean a website is 100% honest — scammers can also obtain free certificates. Always verify the domain name itself.</li>
+                    </ul>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-icon secure">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3 class="guide-title">File Hash Fingerprinting</h3>
+                    <ul class="guide-list">
+                        <li><strong>What is a hash?</strong> A cryptographic hash (like SHA-256) is a unique digital fingerprint of a file.</li>
+                        <li><strong>Integrity Check:</strong> If even one single character in a file changes, the entire hash changes completely.</li>
+                        <li><strong>Malware Detection:</strong> Antivirus and threat intelligence databases maintain hashes of known viruses and ransomware to block them instantly.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <span class="footer-title">TRUSTGUARD</span>
+                <span class="footer-sub">AI-Powered Web Threat Detection & Digital Trust Intelligence</span>
+            </div>
+            <div class="footer-note">
+                Simple, educational cybersecurity intelligence for everyone. Powered by Python & SQLite.
+            </div>
+        </div>
+    </footer>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
